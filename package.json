@@ -1,0 +1,36 @@
+{
+  "name": "exercise-tracker",
+  "version": "1.0.0",
+  "description": "",
+  "main": "Server.js",
+  "scripts": {
+    "client-install": "npm install --prefix client",
+    "client-clean-install": "npm ci --prefix client",
+    "client-build": "npm run build --prefix client",
+    "client": "npm start --prefix client",
+    "server-install": "npm install --prefix server",
+    "server-clean-install": "npm ci --prefix server",
+    "server-build": "npm run build --prefix server",
+    "server": "npm run server --prefix server",
+    "install-all": "npm install && npm run client-install && npm run server-install",
+    "clean-install-all": "npm ci && npm run client-clean-install && npm run server-clean-install",
+    "prod-install": "npm ci --omit=dev && npm ci --prefix server --omit=dev",
+    "build-all": "npm run client-build && npm run server-build",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "start": "npm run start --prefix server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/OlegAba/exercise-tracker.git"
+  },
+  "keywords": [],
+  "author": "Oleg Abalonski",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/OlegAba/exercise-tracker/issues"
+  },
+  "homepage": "https://github.com/OlegAba/exercise-tracker#readme",
+  "devDependencies": {
+    "concurrently": "^7.5.0"
+  }
+}
