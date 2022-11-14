@@ -2,7 +2,7 @@ import dotenv from "dotenv";
 import path from "path";
 import { App } from "./App";
 import { middlewares } from "./Middlewares";
-import shorturlRouter from "./api/shorturl/Shorturl.Router";
+import usersRouter from "./api/users/Users.Router";
 
 dotenv.config();
 const PORT = process.env.PORT || "8080";
@@ -14,7 +14,7 @@ const buildPath = path.join(__dirname, "..", "..", "client", "build");
 const app = new App(
   PORT, 
   middlewares,
-  [shorturlRouter],
+  [usersRouter],
   apiPath,
   buildPath
 );
