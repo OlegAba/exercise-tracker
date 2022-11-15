@@ -1,6 +1,6 @@
 import { Router, Request, Response } from "express";
 import { UsersController } from "./Users.Controller";
-import { validateUsername } from "./Users.Validation";
+import { validateUsername, validateUserID } from "./Users.Validation";
 import { ExercisesController } from "../exercises/Exercises.Controller";
 import { validateExercise } from "../exercises/Exercises.Validation";
 
@@ -24,6 +24,7 @@ router.get(
 
 router.post(
   `${base}/:id/exercises`,
+  validateUserID,
   validateExercise,
   usersController.getUser.bind(usersController),
   exercisesController.createExercise.bind(exercisesController)

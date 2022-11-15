@@ -31,41 +31,22 @@ export class UsersController extends BaseController {
   }
 
   async getUser(req: Request, res: Response, next: CallableFunction): Promise<void> {
-    const id: string = req.params.id;
+    const id: string = res.locals.id;
 
     try {
       const user = await this.model.findOne<UsersDB>({ _id: id });
 
       // User does not exist
       if (user == null) {
-        this.errRes(null, res, "Username does not exist", 400);
+        this.errRes(null, res, "User does not exist", 400);
         return;
       }
 
-      res.locals.user = user;
+      res.locals.username = user.username;
       next();
-      
+
     } catch (error) {
       this.errRes(error, res);
     }
   }
-
-  // async getUser(req: Request, res: Response, id: string): Promise<UsersDB> {
-  //   return new Promise(async (resolve) => {
-  //     try {
-  //       const user = await this.model.findOne<UsersDB>({ _id: id });
-        
-  //       // User does not exist
-  //       if (user == null) {
-  //         this.errRes(null, res, "Username does not exist", 400);
-  //         return;
-  //       }
-
-  //       resolve(user);
-
-  //     } catch (error) {
-  //       this.errRes(error, res);
-  //     }
-  //   });
-  // }
 }
