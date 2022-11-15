@@ -14,20 +14,11 @@ router.post(
   }
 );
 
-// router.post(
-//   base, 
-//   validateURL, 
-//   (req: Request, res: Response) => { 
-//     controller.post(req, res);
-//   }
-// );
-
-// router.get(
-//   `${base}/:id`, 
-//   validateID,
-//   (req: Request, res: Response) => { 
-//     controller.get(req, res);
-//   }
-// );
+router.get(
+  base,
+  (req: Request, res: Response) => {
+    controller.findMany(res, {});
+  }
+);
 
 export default router;

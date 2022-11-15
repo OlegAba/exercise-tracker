@@ -1,14 +1,21 @@
 import mongoose from "mongoose";
 
-interface Exercise {
+export interface Exercise {
   description: string;
   duration: number;
   date: Date;
 }
 
+export interface ExerciseJSON extends Exercise {
+  _id: string;
+}
+
+export interface ExerciseDB extends Exercise {
+  _id: mongoose.ObjectId;
+}
+
 export interface Users {
   username: string;
-  exercises: Exercise[];
 }
 
 export interface UsersJSON extends Users {
