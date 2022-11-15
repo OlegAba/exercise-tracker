@@ -30,4 +30,11 @@ router.post(
   exercisesController.createExercise.bind(exercisesController)
 )
 
+router.get(
+  `${base}/:id/logs`,
+  validateUserID,
+  usersController.getUser.bind(usersController),
+  exercisesController.getAllExercises.bind(exercisesController)
+)
+
 export default router;

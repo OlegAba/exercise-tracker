@@ -41,4 +41,24 @@ export class ExercisesController extends BaseController {
       this.errRes(error, res);
     }
   }
+
+  async getAllExercises(req: Request, res: Response): Promise<void> {
+    const { id, username } = res.locals;
+
+    try {
+      const exercises = await this.model.findMany<ExerciseJSON[]>({ user: id });
+      
+      const log = {
+        username: username,
+        count: exercises.length,
+        _id: id,
+        log: exercises
+      }
+
+      this.jsonRes(log, res);
+
+    } catch (error) {
+      this.errRes(error, res);
+    }
+  }
 }
