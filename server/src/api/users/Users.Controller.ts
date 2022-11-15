@@ -25,8 +25,47 @@ export class UsersController extends BaseController {
       // Create new User
       this.create(res, prop);
 
-    } catch(err) {
-      this.errRes(err, res);
+    } catch (error) {
+      this.errRes(error, res);
     }
   }
+
+  async getUser(req: Request, res: Response, next: CallableFunction): Promise<void> {
+    const id: string = req.params.id;
+
+    try {
+      const user = await this.model.findOne<UsersDB>({ _id: id });
+
+      // User does not exist
+      if (user == null) {
+        this.errRes(null, res, "Username does not exist", 400);
+        return;
+      }
+
+      res.locals.user = user;
+      next();
+      
+    } catch (error) {
+      this.errRes(error, res);
+    }
+  }
+
+  // async getUser(req: Request, res: Response, id: string): Promise<UsersDB> {
+  //   return new Promise(async (resolve) => {
+  //     try {
+  //       const user = await this.model.findOne<UsersDB>({ _id: id });
+        
+  //       // User does not exist
+  //       if (user == null) {
+  //         this.errRes(null, res, "Username does not exist", 400);
+  //         return;
+  //       }
+
+  //       resolve(user);
+
+  //     } catch (error) {
+  //       this.errRes(error, res);
+  //     }
+  //   });
+  // }
 }

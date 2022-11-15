@@ -1,24 +1,32 @@
 import { Router, Request, Response } from "express";
 import { UsersController } from "./Users.Controller";
 import { validateUsername } from "./Users.Validation";
+import { ExercisesController } from "../exercises/Exercises.Controller";
+import { validateExercise } from "../exercises/Exercises.Validation";
 
 const router = Router();
-const controller = new UsersController();
+const usersController = new UsersController();
+const exercisesController = new ExercisesController();
 const base = "/users";
 
 router.post(
   base,
   validateUsername,
-  (req: Request, res: Response) => {
-    controller.createUser(req, res);
-  }
+  usersController.createUser.bind(usersController)
 );
 
 router.get(
   base,
-  (req: Request, res: Response) => {
-    controller.findMany(res, {});
+  (_, res: Response) => {
+    usersController.findMany(res, {});
   }
 );
+
+router.post(
+  `${base}/:id/exercises`,
+  validateExercise,
+  usersController.getUser.bind(usersController),
+  exercisesController.createExercise.bind(exercisesController)
+)
 
 export default router;
