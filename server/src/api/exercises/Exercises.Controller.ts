@@ -1,7 +1,7 @@
 import { Response, Request } from "express";
 import { BaseController } from "../Base.Controller";
 import { ExercisesModel } from "./Exercises.Model";
-import { Exercise, ExerciseJSON } from "./Exercises.Interface";
+import { ExerciseJSON } from "./Exercises.Interface";
 
 export class ExercisesController extends BaseController {
 
@@ -11,12 +11,9 @@ export class ExercisesController extends BaseController {
 
   async createExercise(req: Request, res: Response): Promise<void> {
     const { id, username, description, duration } = res.locals;
-    let { date } = res.locals;
-
-    // Set date to now
-    if (date == null) {
-      date = new Date().toISOString().slice(0, 10);
-    }
+    const date = res.locals.date !== undefined 
+                  ? new Date(res.locals.date.replace(/-/g, '\/')) 
+                  : new Date();
 
     try {
       // Create exercise
@@ -42,12 +39,13 @@ export class ExercisesController extends BaseController {
     }
   }
 
-  async getAllExercises(req: Request, res: Response): Promise<void> {
-    const { id, username } = res.locals;
+  async getExercises(req: Request, res: Response): Promise<void> {
+    const { id, username, fromDate, toDate, limit } = res.locals;
 
     try {
-      const exercises = await this.model.findMany<ExerciseJSON[]>({ user: id });
-      
+      // const exercises = await this.model.findMany<ExerciseJSON[]>({ user: id });
+      const exercises = await this.model.mongooseModel.aggregate
+
       const log = {
         username: username,
         count: exercises.length,

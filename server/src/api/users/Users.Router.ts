@@ -2,7 +2,7 @@ import { Router, Request, Response } from "express";
 import { UsersController } from "./Users.Controller";
 import { validateUsername, validateUserID } from "./Users.Validation";
 import { ExercisesController } from "../exercises/Exercises.Controller";
-import { validateExercise } from "../exercises/Exercises.Validation";
+import { validateExercise, validateQuery } from "../exercises/Exercises.Validation";
 
 const router = Router();
 const usersController = new UsersController();
@@ -33,8 +33,9 @@ router.post(
 router.get(
   `${base}/:id/logs`,
   validateUserID,
+  validateQuery,
   usersController.getUser.bind(usersController),
-  exercisesController.getAllExercises.bind(exercisesController)
+  exercisesController.getExercises.bind(exercisesController)
 )
 
 export default router;
