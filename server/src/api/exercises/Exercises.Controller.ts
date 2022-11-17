@@ -44,7 +44,18 @@ export class ExercisesController extends BaseController {
 
     try {
       // const exercises = await this.model.findMany<ExerciseJSON[]>({ user: id });
-      const exercises = await this.model.mongooseModel.aggregate
+      const exercises = await this.model.mongooseModel.find(
+        { user: id },
+        { 
+          _id: 0,
+          description: 1,
+          duration: 1,
+          date: 1
+        }
+      )
+      
+      console.log(exercises[0].date)
+      exercises[0].date = "TEST123"
 
       const log = {
         username: username,
