@@ -2,10 +2,11 @@ import mongoose, { Schema } from "mongoose";
 import { BaseModel } from "../Base.Model";
 
 const ExercisesSchema: Schema = new Schema({
-  user: { 
-    type: Schema.Types.ObjectId, 
+  user_id: { 
+    type: Schema.Types.ObjectId,
     ref: "User",
-    required: true
+    required: true,
+    index: true
   },
   description: { 
     type: String,

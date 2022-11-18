@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
 export interface Exercise {
-  user: string;
+  user_id: string;
   description: string;
   duration: number;
   date: Date;
