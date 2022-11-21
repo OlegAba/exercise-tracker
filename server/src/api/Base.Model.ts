@@ -57,4 +57,6 @@ export class BaseModel {
   deleteById<T>(id: string): Promise<T> {
     return this.mongooseModel.findByIdAndDelete(id).exec();
   }
+
+  
 }
