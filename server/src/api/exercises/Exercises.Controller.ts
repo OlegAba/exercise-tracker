@@ -43,37 +43,11 @@ export class ExercisesController extends BaseController {
   }
 
   async getExercises(req: Request, res: Response): Promise<void> {
-    const { id, username } = res.locals;
-
-    const limit = res.locals.limit != undefined 
-                    ? res.locals.limit 
-                    : Number.MAX_SAFE_INTEGER
-
-    const fromDate = res.locals.fromDate != undefined 
-                      ? new Date(res.locals.fromDate)
-                      : new Date(-8640000000000000) // Min Date
-
-    const toDate = res.locals.toDate != undefined
-                    ? new Date(res.locals.toDate)
-                    : new Date(8640000000000000) // Max Date
+    const { id, username, limit, fromDate, toDate } = res.locals;
 
     try {
-      // const exercises = await this.model.findMany<ExerciseJSON[]>({ user: id });
-      const exercises = await this.model.mongooseModel.find(
-        { 
-          user_id: id,
-          date: {
-            "$gte": fromDate,
-            "$lte": toDate
-          }
-        },
-        { 
-          _id: 0,
-          description: 1,
-          duration: 1,
-          date: 1
-        }
-      ).limit(limit)
+      const exercises = await (this.model as ExercisesModel)
+                          .findExercises(id, fromDate, toDate, limit);
 
       const log: object[] = [];
       const userLog = {
