@@ -59,7 +59,9 @@ const EndpointMethod: FunctionComponent<Props> = ({
           <div className='method-container'>
             <span>{data.method}</span>
           </div>
-          <code>{data.endpoint}</code>
+          <div className='method-endpoint-container'>
+            <code>{data.endpoint}</code>
+          </div>
           <div className='arrow-container'>
             {isActive 
             ? <RiArrowUpSLine className='icon-arrow' size='30px' />

@@ -114,17 +114,22 @@ export const StyledEndpointMethod = styled.div`
     }
   }
 
-  button code {
-    color: ${path => path.theme.colors.title};
-    font-size: 20px;
-    line-height: 30px;
-    margin-left: 20px;
+  .method-endpoint-container {
+    width: 100%;
+    display: flex;
+    overflow: hidden;
+
+    code {
+      color: ${path => path.theme.colors.title};
+      font-size: 20px;
+      line-height: 30px;
+      margin-left: 20px;
+    }
   }
 
   button .arrow-container {
     display: flex;
     justify-content: flex-end;
-    width: 100%;
   }
 
   .icon-arrow {
@@ -197,7 +202,7 @@ export const StyledEndpointMethod = styled.div`
   }
 
   @media ${props => props.theme.devices.mobileL} {
-    button code {
+    .method-endpoint-container code {
       font-size: 15px;
       line-height: 30px;
       margin-left: 10px;
