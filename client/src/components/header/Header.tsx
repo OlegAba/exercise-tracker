@@ -1,20 +1,24 @@
 import React, { FunctionComponent } from 'react';
 import { StyledHeader } from './Header.styled';
+import { HeaderData } from "./Header.interface";
 
 interface IHeaderProps {
-  title: string
+  headerData: HeaderData
 }
 
 const Header: FunctionComponent<IHeaderProps> = (props) => {
 
+  const { title, apiURL, description, sourceURL } = props.headerData
+  const baseURL = apiURL.replace(/(^\w+:|^)\/\//, '');
+
   return(
     <StyledHeader>
-      <h1>{ props.title }</h1>
-      <a href='https://url-shortener-microservice.fly.dev/api' target='_blank' rel='noopener noreferrer'>
-        <code>[ Base URL: url-shortener-microservice.fly.dev/api ]</code>
+      <h1>{ title }</h1>
+      <a href={ apiURL } target='_blank' rel='noopener noreferrer'>
+        <code>[ Base URL: { baseURL } ]</code>
       </a>
-      <p>This is a sample URL Shortener Microservice server</p>
-      <a href='https://github.com/OlegAba/url-shortener-microservice' target='_blank' rel='noopener noreferrer'>
+      <p>{ description }</p>
+      <a href={ sourceURL } target='_blank' rel='noopener noreferrer'>
         Source Code
       </a>
     </StyledHeader>

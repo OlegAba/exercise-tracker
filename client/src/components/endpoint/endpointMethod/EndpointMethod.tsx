@@ -56,9 +56,11 @@ const EndpointMethod: FunctionComponent<Props> = ({
     <StyledEndpointMethod>
       <div className={methodColor(data.method)}>
         <button onClick={buttonHandler} className={isActive ? "open" : ""}>
-          <span>{data.method}</span>
+          <div className='method-container'>
+            <span>{data.method}</span>
+          </div>
           <code>{data.endpoint}</code>
-          <div>
+          <div className='arrow-container'>
             {isActive 
             ? <RiArrowUpSLine className='icon-arrow' size='30px' />
             : <RiArrowDownSLine className='icon-arrow' size='30px' />}

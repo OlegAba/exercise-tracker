@@ -54,4 +54,30 @@ export const GlobalStyles = createGlobalStyle`
     color: ${props => props.theme.colors.link};
     text-decoration: none;
   }
+
+  @media ${props => props.theme.devices.mobileL} {
+    h1 {
+      font-size: 25px;
+    }
+
+    h2 {
+      font-size: 20px;
+    }
+
+    code {
+      font-size: 11px;
+    }
+
+    .max-width-container {
+      padding: 0 15px 0 15px;
+    }
+
+    .header-container {
+      padding: 50px 0 50px 0;
+    }
+
+    .main-container {
+      padding: 20px 0 20px 0;
+    }
+  }
 `;

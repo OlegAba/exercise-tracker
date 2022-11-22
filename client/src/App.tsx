@@ -4,7 +4,7 @@ import { GlobalStyles } from './styles/GlobalStyles';
 import { lightTheme, darkTheme } from './styles/Themes';
 import Header from './components/header/Header';
 import Endpoint from './components/endpoint/Endpoint';
-import { dateEndpointData } from './Data';
+import { headerData, endpointData } from './Data';
 
 interface IProps {}
 
@@ -36,16 +36,16 @@ class App extends Component<IProps, IState> {
         <GlobalStyles/>
           <div className='header-container'>
             <div className='max-width-container'>
-              <Header title={ 'URL Shortener API' }/>
+              <Header headerData={ headerData }/>
             </div>
           </div>
 
           <div className='main-container'>
             <div className='max-width-container'>
               <Endpoint
-                active={true} 
-                isDarkMode={this.state.isDarkMode} 
-                endpointData={dateEndpointData}
+                active={ false } 
+                isDarkMode={ this.state.isDarkMode } 
+                endpointData={ endpointData }
               />
             </div>
           </div>
