@@ -1,14 +1,25 @@
 import styled from "styled-components";
 
 export const StyledEndpoint = styled.div`
-  .title-container {
-    vertical-align: bottom;
-    line-height: 50px;
+  .endpoint-header-container {
     display: flex;
     border-bottom: 2px solid ${props => props.theme.colors.border};
+    padding: 10px 0 10px 0;
+  }
+
+  h2 {
+    line-height: 38px;
+  }
+
+  .endpoint-description-container {
+    margin-left: 15px;
 
     p {
-      margin-left: 15px;
+      position: relative;
+      top: 50%;
+      -webkit-transform: translateY(-50%);
+      -ms-transform: translateY(-50%);
+      transform: translateY(-50%);
     }
   }
 
@@ -17,17 +28,17 @@ export const StyledEndpoint = styled.div`
   }
 
   @media ${props => props.theme.devices.mobileL} {
-    .title-container {
+    .endpoint-header-container {
       flex-wrap: wrap;
-      line-height: 200%;
+    }
 
-      h2 {
-        width: 100%;
-      }
+    .endpoint-title-container {
+      width: 100%;
+    }
 
-      p {
-        margin-left: 0;
-      }
+    .endpoint-description-container {
+      margin-left: 0;
+      padding: 5px 0 5px 0;
     }
   }
 `;

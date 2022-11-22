@@ -17,9 +17,13 @@ const Endpoint: FunctionComponent<Props> = ({
 
   return(
     <StyledEndpoint>
-      <div className='title-container noselect'>
-        <h2>{endpointData.name}</h2>
-        <p>{endpointData.description}</p>
+      <div className='endpoint-header-container'>
+        <div className='endpoint-title-container'>
+          <h2>{ endpointData.name }</h2>
+        </div>
+        <div className='endpoint-description-container'>
+        <p>{ endpointData.description }</p>
+        </div>
       </div>
 
       {endpointData.methodsData.map((methodData: MethodData, index: number) => 

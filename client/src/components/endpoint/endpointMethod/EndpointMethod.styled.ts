@@ -5,7 +5,7 @@ export const StyledEndpointMethod = styled.div`
     button {
       border-color: ${path => path.theme.colors.accent.blue};
 
-      span {
+      .method-container {
         background: ${path => path.theme.colors.accent.blue};
       }
     }
@@ -25,7 +25,7 @@ export const StyledEndpointMethod = styled.div`
     button {
       border-color: ${path => path.theme.colors.accent.red};
 
-      span {
+      .method-container {
         background: ${path => path.theme.colors.accent.red};
       }
     }
@@ -45,7 +45,7 @@ export const StyledEndpointMethod = styled.div`
     button {
       border-color: ${path => path.theme.colors.accent.green};
 
-      span {
+      .method-container {
         background: ${path => path.theme.colors.accent.green};
       }
     }
@@ -65,7 +65,7 @@ export const StyledEndpointMethod = styled.div`
     button {
       border-color: ${path => path.theme.colors.accent.yellow};
 
-      span {
+      .method-container {
         background: ${path => path.theme.colors.accent.yellow};
       }
     }
@@ -100,15 +100,18 @@ export const StyledEndpointMethod = styled.div`
     border-top-right-radius: 10px;
   }
 
-  button span {
-    color: white;
-    text-transform: uppercase;
-    font-weight: bold;
-    padding: 0 30px 0 30px;
+  .method-container {
     height: 30px;
     display: inline-flex;
     align-items: center;
     border-radius: 5px;
+
+    span {
+      color: white;
+      text-transform: uppercase;
+      font-weight: bold;
+      width: 100px;
+    }
   }
 
   button code {
@@ -118,7 +121,7 @@ export const StyledEndpointMethod = styled.div`
     margin-left: 20px;
   }
 
-  button div {
+  button .arrow-container {
     display: flex;
     justify-content: flex-end;
     width: 100%;
@@ -201,7 +204,17 @@ export const StyledEndpointMethod = styled.div`
     }
 
     .accordion-col-left {
-      width: 100px;
+      width: 150px;
+    }
+
+    .method-container {
+      span {
+        width: 80px;
+      }
+    }
+
+    h4 {
+      font-size: 14px;
     }
   }
 `;
